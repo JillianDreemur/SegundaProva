@@ -1,5 +1,5 @@
-package prova.aula.poo.src.Model;
-import prova.aula.poo.src.Model.Produto;
+package br.estoque.src.Model;
+import br.estoque.src.Model.Produto;
 
 public class Fornecedor {
     public String nome;

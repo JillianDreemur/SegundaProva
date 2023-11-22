@@ -1,4 +1,4 @@
-package prova.aula.poo.src.Model;
+package br.estoque.src.Model;
 import prova.aula.poo.src.Model.Produto;
 import java.util.Scanner;
 

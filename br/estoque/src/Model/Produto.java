@@ -1,4 +1,4 @@
-package prova.aula.poo.src.Model;
+package br.estoque.src.Model;
 
 public class Produto {
     public String ID;

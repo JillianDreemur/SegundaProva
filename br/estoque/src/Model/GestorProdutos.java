@@ -1,4 +1,4 @@
-package prova.aula.poo.src.Model;
+package br.estoque.src.Model;
 
 public class GestorProdutos {
     public Fornecedor[] listaDeFornecedores = new Fornecedor[10];
