@@ -5,28 +5,25 @@ public class Fornecedor {
     public String nome;
     public String senha;
     public int cnpj;
-    public Produto[] produtosDoFornecedor = new Produto[15];
+    public Produto[] produtosDoFornecedor;
     public int qntProdutosFornecedor = 0;
 
-    public Fornecedor(String nome, int cnpj, String senha) {
+    public Fornecedor(String nome, int cnpj, String senha, int limiteProdutos) {
         this.nome = nome;
         this.cnpj = cnpj;
         this.senha = senha;
+        this.produtosDoFornecedor = new Produto[limiteProdutos];
     }
 
-    public void cadastrarProdutoFornecedor(Produto produto) {
+    public boolean cadastrarProdutoFornecedor(Produto produto) {
         if (buscarNome(produto.nome) == null) {
             if (qntProdutosFornecedor < produtosDoFornecedor.length) {
                 this.produtosDoFornecedor[this.qntProdutosFornecedor] = produto;
                 this.qntProdutosFornecedor++;
-                System.out.print("\nCadastro concluído com sucesso.");
-            } else {
-                System.out.print("Desculpe, mas seu estoque está cheio; " +
-               "não podemos permitir que você cadastre outro produto.");
+                return true;
             }
-        } else {
-            System.out.print("Desculpe, mas esse produto já foi cadastrado.");
         }
+        return false;
     }
 
     public Produto buscarNome(String nome) {

@@ -1,10 +1,14 @@
 package br.estoque.src.Model;
-import prova.aula.poo.src.Model.Produto;
+import br.estoque.src.Model.Produto;
 import java.util.Scanner;
 
 public class Estoque {
-    public Produto[] listaDeProdutos = new Produto[20];
+    public Produto[] listaDeProdutos;
     public int qntProdutos = 0;
+
+    public Estoque(int limiteProdutos){
+        this.listaDeProdutos = new Produto[limiteProdutos];
+    }
 
     public Produto verificarDisponibilidade(String nome) {
         for (int i = 0; i < qntProdutos; i++) {
@@ -15,18 +19,15 @@ public class Estoque {
         return null;
     }
 
-    public int cadastrarProduto(Produto produto) {
+    public boolean cadastrarProduto(Produto produto) {
         if (buscarNome(produto.nome) == null) {
             if (qntProdutos < listaDeProdutos.length) {
                 this.listaDeProdutos[this.qntProdutos] = produto;
                 this.qntProdutos++;
-                return 1;
-            } else {
-                return 2;
+                return true;
             }
-        } else {
-            return 3;
         }
+        return false;
     }
 
     public Produto buscarNome(String nome) {
@@ -62,11 +63,11 @@ public class Estoque {
     public boolean atualizarProduto(String nomeProduto, Produto produto) {
         for (int i = 0; i < qntProdutos; i++) {
             if(this.listaDeProdutos[i].nome.equalsIgnoreCase(nomeProduto)) {
-                listaDeProdutos[i].ID = produto.ID;
-                listaDeProdutos[i].nome = produto.nome;
-                listaDeProdutos[i].descricao = produto.descricao;
-                listaDeProdutos[i].preco = produto.preco;
-                listaDeProdutos[i].qntEstoque = produto.qntEstoque;
+                this.listaDeProdutos[i].ID = produto.ID;
+                this.listaDeProdutos[i].nome = produto.nome;
+                this.listaDeProdutos[i].descricao = produto.descricao;
+                this.listaDeProdutos[i].preco = produto.preco;
+                this.listaDeProdutos[i].qntEstoque = produto.qntEstoque;
             }
         }
         return (buscarNome(nomeProduto) == null) && (buscarNome(produto.nome) != null);

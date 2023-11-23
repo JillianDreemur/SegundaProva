@@ -1,23 +1,20 @@
 package br.estoque.src.Model;
 
 public class GestorProdutos {
-    public Fornecedor[] listaDeFornecedores = new Fornecedor[10];
+    public Fornecedor[] listaDeFornecedores;
     public int qntFornecedores = 0;
 
-    public int cadastrarFornecedor(String nome, int cnpj, String senha) {
+    public GestorProdutos(int limiteFornecedores){
+        this.listaDeFornecedores = new Fornecedor[limiteFornecedores];
+    }
+
+    public boolean cadastrarFornecedor(Fornecedor novoFornecedor) {
         if (qntFornecedores < listaDeFornecedores.length) {
-            Fornecedor novoFornecedor = new Fornecedor(nome, cnpj, senha);
             this.listaDeFornecedores[this.qntFornecedores] = novoFornecedor;
             this.qntFornecedores++;
-            if(listaDeFornecedores[qntFornecedores].nome.equalsIgnoreCase(nome) &&
-            listaDeFornecedores[qntFornecedores].cnpj == cnpj) {
-                return 1;
-            } else {
-                return 2;
-            }
-        } else {
-            return 3;
+            return true;
         }
+        return false;
     }
 
     public Fornecedor[] buscarProdutoPorNome(String nome) {
