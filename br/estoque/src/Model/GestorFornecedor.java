@@ -12,7 +12,12 @@ public class GestorFornecedor {
         if (qntFornecedores < listaDeFornecedores.length) {
             this.listaDeFornecedores[this.qntFornecedores] = novoFornecedor;
             this.qntFornecedores++;
-            return true;
+            if(listaDeFornecedores[qntFornecedores - 1] != null){
+                return true;
+            } else {
+                qntFornecedores -= 1;
+                return false;
+            }
         }
         return false;
     }
@@ -36,9 +41,12 @@ public class GestorFornecedor {
 
     public boolean buscarProdutoPorNome(String nome){
         for(int i = 0; i < qntFornecedores; i++){
-            for(int j = 0; j < this.listaDeFornecedores[i].qntProdutosFornecedor; j++){
-                if(this.listaDeFornecedores[i].produtosDoFornecedor[j].nome.equalsIgnoreCase(nome)){
-                    this.listaDeFornecedores[i].produtosDoFornecedor[j].exibirInfo();
+            for(int j = 0; j < this.listaDeFornecedores[i].
+                    qntProdutosFornecedor; j++){
+                if(this.listaDeFornecedores[i].
+                  produtosDoFornecedor[j].nome.equalsIgnoreCase(nome)){
+                    this.listaDeFornecedores[i].
+                  produtosDoFornecedor[j].exibirInfo();
                     return true;
                 }
             }
