@@ -1,6 +1,6 @@
 package br.estoque.src.Main;
 import br.estoque.src.Model.Estoque;
-import br.estoque.src.Model.GestorProdutos;
+import br.estoque.src.Model.GestorFornecedor;
 import java.util.Scanner;
 
 public class Menu {
@@ -25,91 +25,81 @@ public class Menu {
         return opcaoPrincipal;
     }
 
-    public void Perfumaria(MenuLoja menuLoja, MenuGestorLoja menuGestorLoja,
-     Estoque estoque, GestorProdutos gestorProdutos,
-                MenuGestorFornecedor menuGestorFornecedor){
+    public void menu(MenuLoja menuLoja, MenuGestorLoja menuGestorLoja, Estoque estoque,
+      GestorFornecedor gestorFornecedor, MenuGestorFornecedor menuGestorFornecedor){
         while (true){
             int opcao;
             opcao = menuPrincipal();
-            switch (opcao){
-                case 0: //SAIDA DO MENU PRINCIPAL
-                    break;
-                case 1: // ENTRADA MENU DA LOJA
-                    while (true){
-                        int opcaoLoja;
-                        opcaoLoja = menuLoja.menuLoja();
-                        switch (opcaoLoja){
-                            case 0: // VOLTAR AO MENU PRINCIPAL
-                                break;
-                            case 1: // CADASTRAR PRODUTO
-                                menuLoja.cadastrarProduto(estoque);
-                            case 2: // DISPONIBILIDADE DO PRODUTO
-                                menuLoja.verificarDisponibilidade(estoque);
-                            case 3: // PESQUISAR PRODUTO POR NOME
-                                menuLoja.buscarProdutoPorNome(estoque);
-                            case 4: // PESQUISAR PRODUTO POR ID
-                                menuLoja.buscarProdutoPorID(estoque);
-                            case 5: // ATUALIZAR PRODUTO
-                                menuLoja.atualizarProduto(estoque);
-                            case 6: // EXCLUIR PRODUTO
-                                menuLoja.excluirProduto(estoque);
-                            case 7: // GERAR RELATORIO
-                                menuLoja.gerarRelatorio(estoque);
-                        }
+            if(opcao == 0){ //SAIR DO CODIGO
+                break;
+            } else if (opcao == 1){ // MENU DA LOJA
+                while (true) {
+                    int opcaoLoja;
+                    opcaoLoja = menuLoja.menuLoja();
+                    if (opcaoLoja == 0) {
+                        break;
+                    } else if (opcaoLoja == 1) {
+                        menuLoja.cadastrarProduto(estoque);
+                    } else if (opcaoLoja == 2) {
+                        menuLoja.verificarDisponibilidade(estoque);
+                    } else if (opcaoLoja == 3) {
+                        menuLoja.buscarProdutoPorNome(estoque);
+                    } else if (opcaoLoja == 4) {
+                        menuLoja.buscarProdutoPorID(estoque);
+                    } else if (opcaoLoja == 5) {
+                        menuLoja.atualizarProduto(estoque);
+                    } else if (opcaoLoja == 6) {
+                        menuLoja.excluirProduto(estoque);
+                    } else if (opcaoLoja == 7) {
+                        menuLoja.gerarRelatorio(estoque);
                     }
-                case 2: // ENTRADA MENU DO GESTOR
-                    while (true){
-                        int opcaoGestor;
-                        opcaoGestor = menuGestorLoja.menuGestao();
-                        switch (opcaoGestor){
-                            case 0: // VOLTAR AO MENU PRINCIPAL
-                                break;
-                            case 1: // CADASTRAR FORNECEDOR
-                                menuGestorLoja.cadastrarFornecedor(gestorProdutos);
-                            case 2: // BUSCAR PRODUTO POR NOME
-                                menuGestorLoja.buscarProdutoPorNome(gestorProdutos);
-                            case 3: // BUSCAR PRODUTO POR NOME
-                                menuGestorLoja.buscarProdutoPorID(gestorProdutos);
-                            case 4: // EXIBIR INFORMAÇÕES DO FORNECEDOR
-                                menuGestorLoja.exibirInfoFornecedor(gestorProdutos);
-                            case 5: // EXIBIR INFORMAÇÕES DO PRODUTO
-                                menuGestorLoja.exibirInfoProduto(gestorProdutos);
-                            case 6: // EXIBIR RELATÓRIO DOS FORNECEDORES
-                                menuGestorLoja.relatorioFornecedores(gestorProdutos);
-                        }
+                }
+            } else if (opcao == 2){ // MENU GESTOR LOJA
+                while (true){
+                    int opcaoGestor;
+                    opcaoGestor = menuGestorLoja.menuGestao();
+                    if(opcaoGestor == 0){
+                        break;
+                    } else if (opcaoGestor == 1){
+                        menuGestorLoja.cadastrarFornecedor(gestorFornecedor);
+                    } else if (opcaoGestor == 2){
+                        menuGestorLoja.buscarProdutoPorNome(gestorFornecedor);
+                    } else if (opcaoGestor == 3){
+                        menuGestorLoja.exibirInfoFornecedor(gestorFornecedor);
+                    } else if (opcaoGestor == 4){
+                        menuGestorLoja.relatorioFornecedores(gestorFornecedor);
                     }
-                case 3: // ENTRADA GESTÃO DO FORNECEDOR
-                    boolean login = menuGestorFornecedor.login(gestorProdutos);
-                    while (!login){
+                }
+            } else if (opcao == 3){ //MENU FORNECEDOR
+                boolean login = menuGestorFornecedor.login(gestorFornecedor);
+                while (!login){
                         Scanner scanner = new Scanner(System.in);
                         System.out.println("Um dos dados está incorreto. " +
                                 "\nGostaria de tentar novamente?" +
                                 "\nPara Sim digite 1; Para não, digite qualquer outro número.");
                         int confirmacao = scanner.nextInt();
                         if(confirmacao == 1){
-                            login = menuGestorFornecedor.login(gestorProdutos);
+                            login = menuGestorFornecedor.login(gestorFornecedor);
                         } else {
                             break;
                         }
+                    } // AREA LOGIN DO FORNECEDOR
+                while (true){ // FORNECEDOR LOGADO
+                    int opcaoFornecedor;
+                    opcaoFornecedor = menuGestorFornecedor.menuGestorFornecedor();
+                    if(opcaoFornecedor == 0){
+                        break;
+                    } else if (opcaoFornecedor == 1){
+                        menuGestorFornecedor.cadastrarProduto();
+                    } else if (opcaoFornecedor == 2){
+                        menuGestorFornecedor.buscarProdutoPorNome();
+                    } else if (opcaoFornecedor == 3){
+                        menuGestorFornecedor.buscarProdutoPorID();
+                    } else if (opcaoFornecedor == 4){
+                        menuGestorFornecedor.relatorioProduto();
                     }
-                    while (true){ // FORNECEDOR LOGADO
-                        int opcaoFornecedor;
-                        opcaoFornecedor = menuGestorFornecedor.menuGestorFornecedor();
-                        switch (opcaoFornecedor){
-                            case 0: // VOLTA AO MENU PRINCIPAL
-                                break;
-                            case 1: // CADASTRAR NOVO PRODUTO
-                                menuGestorFornecedor.cadastrarProduto();
-                            case 2: // BUSCAR PRODUTO POR NOME
-                                menuGestorFornecedor.buscarProdutoPorNome();
-                            case 3: // BUSCAR PRODUTO POR ID
-                                menuGestorFornecedor.buscarProdutoPorID();
-                            case 4: // EXIBIR RELATÓRIO DOS PRODUTOS
-                                menuGestorFornecedor.relatorioProduto();
-                        }
-                    }
+                }
             }
         }
-
     }
 }
