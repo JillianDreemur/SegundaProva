@@ -33,11 +33,16 @@ public class GestorFornecedor {
         System.out.println("\nQuantidade de produtos: %i\n" +
                     fornecedorLogado.qntProdutosFornecedor);
     }
-}
 
-/*
-buscarProdutoPorNome(): Permite a busca de produtos por nome.
-buscarProdutoPorID(): Permite a busca de produtos por ID.
-exibirInfoFornecedor(): Exibe informações detalhadas sobre o fornecedor.
-exibirInfoProduto(): Exibe informações detalhadas sobre o produto.
- */
+    public boolean buscarProdutoPorNome(String nome){
+        for(int i = 0; i < qntFornecedores; i++){
+            for(int j = 0; j < this.listaDeFornecedores[i].qntProdutosFornecedor; j++){
+                if(this.listaDeFornecedores[i].produtosDoFornecedor[j].nome.equalsIgnoreCase(nome)){
+                    this.listaDeFornecedores[i].produtosDoFornecedor[j].exibirInfo();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
