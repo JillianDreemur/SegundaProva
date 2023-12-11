@@ -1,16 +1,19 @@
 package br.estoque.src.Main;
 import br.estoque.src.Model.Carrinho;
 import br.estoque.src.Model.Cliente;
+import java.util.Scanner;
 
 public class MenuCarrinho {
     public int menuCarrinho(){
         System.out.println("==============================" +
-                         "\n=-      MENU PRINCIPAL      -=" +
+                         "\n=-       MENU CLIENTE       -=" +
                          "\n==============================" +
                          "\n=- 0 - Sair                 -=" +
-                         "\n=- 1 - Menu de Gestão       -=" +
-                         "\n=- 2 - Menu da Loja         -=" +
-                         "\n=- 3 - Login Fornecedor     -=" +
+                         "\n=- 1 - Adicionar produto    -=" +
+                         "\n=- 2 - Buscar produto       -=" +
+                         "\n=- 3 - Excluir produto      -=" +
+                         "\n=- 4 - Editar produto       -=" +
+                         "\n=- 5 - Mostrar carrinho     -=" +
                          "\n==============================");
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nDigite a opção desejada: ");
