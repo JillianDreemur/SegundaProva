@@ -1,22 +1,22 @@
-package prova.aula.poo.src.Main;
-import prova.aula.poo.src.Model.Fornecedor;
-import prova.aula.poo.src.Model.Produto;
-import prova.aula.poo.src.Model.GestorProdutos;
+package br.estoque.src.Main;
+import br.estoque.src.Model.Fornecedor;
+import br.estoque.src.Model.Produto;
+import br.estoque.src.Model.GestorFornecedor;
 import java.util.Scanner;
 
 public class MenuGestorFornecedor {
     public Fornecedor FornecedorLogado;
 
-    public boolean login(GestorProdutos gestorProdutos){
+    public boolean login(GestorFornecedor gestorFornecedor){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Fornecedor, digite seu CNPJ para logar: ");
         int cnpj = scanner.nextInt();
         System.out.println("Fornecedor, digite sua SENHA para logar: ");
         String senha = scanner.next();
-        for(int i = 0; i < gestorProdutos.qntFornecedores; i++){
-            if(gestorProdutos.listaDeFornecedores[i].cnpj == cnpj &&
-                    gestorProdutos.listaDeFornecedores[i].senha.equalsIgnoreCase(senha)){
-                this.FornecedorLogado = gestorProdutos.listaDeFornecedores[i];
+        for(int i = 0; i < gestorFornecedor.qntFornecedores; i++){
+            if(gestorFornecedor.listaDeFornecedores[i].cnpj == cnpj &&
+                    gestorFornecedor.listaDeFornecedores[i].senha.equalsIgnoreCase(senha)){
+                this.FornecedorLogado = gestorFornecedor.listaDeFornecedores[i];
                 System.out.println("Bem vindo, %s" + FornecedorLogado.nome);
                 return true;
             }
@@ -59,13 +59,12 @@ public class MenuGestorFornecedor {
         System.out.println("Digite a quantidade do estoque do produto: ");
         int qnt = scanner.nextInt();
         Produto produto = new Produto(ID, nome, descricao, preco, qnt);
-        int cadastro = FornecedorLogado.cadastrarProduto(produto);
-        if(cadastro == 1){
+        boolean cadastro = FornecedorLogado.cadastrarProdutoFornecedor(produto);
+        if(cadastro){
             System.out.println("Produto cadastrado com sucesso!");
-        } else if (cadastro == 2) {
-            System.out.println("O estoque está cheio, não podemos cadastrar um novo produto.");
         } else {
-            System.out.println("Erro no cadastro do produto, por favor, tente novamente.");
+            System.out.println("Erro no cadastro do produto, " +
+                    "por favor, tente novamente.");
         }
     }
 

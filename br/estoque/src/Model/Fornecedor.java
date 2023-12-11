@@ -8,7 +8,8 @@ public class Fornecedor {
     public Produto[] produtosDoFornecedor;
     public int qntProdutosFornecedor = 0;
 
-    public Fornecedor(String nome, int cnpj, String senha, int limiteProdutos) {
+    public Fornecedor(String nome, int cnpj, String senha,
+                      int limiteProdutos) {
         this.nome = nome;
         this.cnpj = cnpj;
         this.senha = senha;

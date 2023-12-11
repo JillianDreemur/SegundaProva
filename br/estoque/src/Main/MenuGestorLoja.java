@@ -1,7 +1,7 @@
-package prova.aula.poo.src.Main;
-import prova.aula.poo.src.Model.Fornecedor;
-import prova.aula.poo.src.Model.Produto;
-import prova.aula.poo.src.Model.GestorProdutos;
+package br.estoque.src.Main;
+import br.estoque.src.Model.Fornecedor;
+import br.estoque.src.Model.Produto;
+import br.estoque.src.Model.GestorProdutos;
 import java.util.Scanner;
 
 public class MenuGestorLoja {
@@ -37,14 +37,18 @@ public class MenuGestorLoja {
         int cnpj = scanner.nextInt();
         System.out.println("Digite a senha do fornecedor: ");
         String senha = scanner.next();
-        int cadastro = gestorProdutos.cadastrarFornecedor(nome, cnpj, senha);
+        int cadastro = gestorProdutos.cadastrarFornecedor
+                (nome, cnpj, senha);
         if(cadastro == 1){
-            System.out.println("Fornecedor " + nome + " cadastrado com sucesso!");
+            System.out.println("Fornecedor " + nome + " cadastrado com " +
+                    "sucesso!");
         } else if (cadastro == 2){
-            System.out.println("Erro no cadastro, por favor, tente novamente");
+            System.out.println("Erro no cadastro, por favor, " +
+                    "tente novamente");
         } else {
-            System.out.println("Sinto muito, mas a lista de fornecedores está cheia; " +
-                    "Para cadastrar um novo fornecedor, libere espaço na lista.");
+            System.out.println("Sinto muito, mas a lista de fornecedores " +
+     "está cheia; Para cadastrar um novo fornecedor, " +
+                    "libere espaço na lista.");
         }
     }
 

@@ -1,6 +1,6 @@
-package prova.aula.poo.src.Main;
-import prova.aula.poo.src.Model.Estoque;
-import prova.aula.poo.src.Model.GestorProdutos;
+package br.estoque.src.Main;
+import br.estoque.src.Model.Estoque;
+import br.estoque.src.Model.GestorProdutos;
 import java.util.Scanner;
 
 public class Menu {
@@ -25,8 +25,9 @@ public class Menu {
         return opcaoPrincipal;
     }
 
-    public void Perfumaria(MenuLoja menuLoja, MenuGestorLoja menuGestorLoja, Estoque estoque,
-            GestorProdutos gestorProdutos, MenuGestorFornecedor menuGestorFornecedor){
+    public void Perfumaria(MenuLoja menuLoja, MenuGestorLoja menuGestorLoja,
+     Estoque estoque, GestorProdutos gestorProdutos,
+                MenuGestorFornecedor menuGestorFornecedor){
         while (true){
             int opcao;
             opcao = menuPrincipal();
