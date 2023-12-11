@@ -1,5 +1,5 @@
 package br.estoque.src.Model;
-import br.estoque.src.Model.Produto;
+import java.util.Scanner;
 
 public class Carrinho {
     public Produto[] produtosNoCarrinho;
@@ -56,7 +56,37 @@ public class Carrinho {
         return false;
     }
 
-    public boolean editarProduto(String nome){
+    public boolean editarProduto(String nome, int novaQnt){
+        for (int i = 0; i < this.produtosNoCarrinho.length; i++){
+            if(this.produtosNoCarrinho[i].nome.equalsIgnoreCase(nome)){
+                while (true) {
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Para aumentar a quantidade digite 1");
+                System.out.println("Para diminuir a quantidade digite 2");
+                int conta = scanner.nextInt();
+                if(conta == 1){
+                    this.produtosNoCarrinho[i].qntEstoque += novaQnt;
+                    return true;
+                } else if (conta == 2){
+                    this.produtosNoCarrinho[i].qntEstoque -= novaQnt;
+                    return true;
+                } else {
+                    System.out.println("Escolha uma opção válida.");
+                    }
+                }
+            }
+        }
+        return false;
+    }
 
+    public void mostrarCarrinho(){
+        for(int i = 0; i < this.produtosNoCarrinho.length; i++){
+            System.out.println("------------------------------------------");
+            System.out.println();
+            System.out.println("Nome do Produto: %s" +
+                    this.produtosNoCarrinho[i].nome);
+            System.out.println("Quantidade a ser comprada: %i" +
+                    this.produtosNoCarrinho[i].qntEstoque);
+        }
     }
 }
