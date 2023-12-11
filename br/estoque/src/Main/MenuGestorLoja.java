@@ -54,30 +54,7 @@ public class MenuGestorLoja {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Por favor digite o nome do produto que deseja buscar: ");
         String nome = scanner.next();
-        Fornecedor[] fornecedoresProduto = gestorFornecedor.buscarProdutoPorNome(nome);
-        if(fornecedoresProduto.length == 0){
-            System.out.println("Desculpe, mas não existe nenhum fornecedor que tenha esse produto.");
-        } else {
-            System.out.println("Fornecedores do produto %s" + nome);
-            for(int i = 0; i < fornecedoresProduto.length; i++){
-                System.out.println((i+1) + " ." + fornecedoresProduto[i]);
-            }
-        }
-    }
-
-    public void buscarProdutoPorID(GestorFornecedor gestorFornecedor){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Por favor digite o ID do produto que deseja buscar: ");
-        String ID = scanner.next();
-        Fornecedor[] fornecedoresProduto = gestorFornecedor.buscarProdutoPorID(ID);
-        if(fornecedoresProduto.length == 0){
-            System.out.println("Desculpe, mas não existe nenhum fornecedor que tenha esse produto.");
-        } else {
-            System.out.println("Fornecedores do produto %s" + ID);
-            for(int i = 0; i < fornecedoresProduto.length; i++){
-                System.out.println((i+1) + " ." + fornecedoresProduto[i]);
-            }
-        }
+        gestorFornecedor.buscarProdutoPorNome(nome);
     }
 
     public void exibirInfoFornecedor(GestorFornecedor gestorFornecedor){
@@ -89,20 +66,6 @@ public class MenuGestorLoja {
             System.out.println("Desculpe, mas esse fornecedor não existe.");
         } else {
             busca.exibirInfo();
-        }
-    }
-
-    public void exibirInfoProduto(GestorFornecedor gestorFornecedor){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Digite o nome do produto pelo qual deseja buscar: ");
-        String nome = scanner.next();
-        Produto[] produto = gestorFornecedor.exibirInfoProduto(nome);
-        for(int i = 0; i < produto.length; i++){
-            if(produto.length == 0){
-                System.out.println("Desculpe, mas nenhum fornecedor tem esse produto cadastrado.");
-            } else {
-                produto[i].exibirInfo();
-            }
         }
     }
 

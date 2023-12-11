@@ -31,26 +31,15 @@ public class GestorFornecedor {
         return null;
     }
 
-    public void relatorioFornecedor(Fornecedor fornecedorLogado){
-        System.out.println("\nNome: %s" + fornecedorLogado.nome);
-        System.out.println("\nCNPJ: %i" + fornecedorLogado.cnpj);
-        System.out.println("\nSenha: %i" + fornecedorLogado.senha);
-        System.out.println("\nQuantidade de produtos: %i\n" +
-                    fornecedorLogado.qntProdutosFornecedor);
-    }
-
-    public boolean buscarProdutoPorNome(String nome){
+    public void buscarProdutoPorNome(String nome){
         for(int i = 0; i < qntFornecedores; i++){
             for(int j = 0; j < this.listaDeFornecedores[i].
                     qntProdutosFornecedor; j++){
-                if(this.listaDeFornecedores[i].
-                  produtosDoFornecedor[j].nome.equalsIgnoreCase(nome)){
-                    this.listaDeFornecedores[i].
-                  produtosDoFornecedor[j].exibirInfo();
-                    return true;
+                if(this.listaDeFornecedores[i].produtosDoFornecedor[j].nome.equalsIgnoreCase(nome)){
+                    System.out.println("Fornecedor $s" + this.listaDeFornecedores[i]);
+                    this.listaDeFornecedores[i].produtosDoFornecedor[j].exibirInfo();
                 }
             }
         }
-        return false;
     }
 }
