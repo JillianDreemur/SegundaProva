@@ -18,17 +18,17 @@ public class Estoque {
         return null;
     }
 
-    public Produto cadastrarProduto(Produto produto) {
+    public boolean cadastrarProduto(Produto produto) {
         if (buscarNome(produto.nome) == null) {
             if (qntProdutos < listaDeProdutos.length) {
                 this.listaDeProdutos[this.qntProdutos] = produto;
                 this.qntProdutos++;
             }
             if(buscarNome(produto.nome) != null){
-                return produto;
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
     public Produto buscarNome(String nome) {
@@ -61,8 +61,7 @@ public class Estoque {
         return this.listaDeProdutos[variavel] == null;
     }
 
-    public boolean atualizarProduto(String nomeProduto,
-                                    Produto produto) {
+    public boolean atualizarProduto(String nomeProduto, Produto produto) {
         for (int i = 0; i < qntProdutos; i++) {
             if(this.listaDeProdutos[i].nome.equalsIgnoreCase(nomeProduto)) {
                 this.listaDeProdutos[i].ID = produto.ID;

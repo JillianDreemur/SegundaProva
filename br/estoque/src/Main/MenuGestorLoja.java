@@ -1,7 +1,7 @@
 package br.estoque.src.Main;
 import br.estoque.src.Model.Fornecedor;
 import br.estoque.src.Model.Produto;
-import br.estoque.src.Model.GestorProdutos;
+import br.estoque.src.Model.GestorFornecedor;
 import java.util.Scanner;
 
 public class MenuGestorLoja {
@@ -29,7 +29,7 @@ public class MenuGestorLoja {
         return opcaoGestao;
     }
 
-    public void cadastrarFornecedor(GestorProdutos gestorProdutos){
+    public void cadastrarFornecedor(GestorFornecedor gestorFornecedor){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Digite o nome do fornecedor: ");
         String nome = scanner.next();
@@ -37,26 +37,24 @@ public class MenuGestorLoja {
         int cnpj = scanner.nextInt();
         System.out.println("Digite a senha do fornecedor: ");
         String senha = scanner.next();
-        int cadastro = gestorProdutos.cadastrarFornecedor
-                (nome, cnpj, senha);
-        if(cadastro == 1){
+        System.out.println("Digite o limite de produtos do fornecedor: ");
+        int limiteProdutos = scanner.nextInt();
+        Fornecedor novoFornecedor = new Fornecedor(nome, cnpj, senha, limiteProdutos);
+        boolean cadastro = gestorFornecedor.cadastrarFornecedor(novoFornecedor);
+        if(cadastro){
             System.out.println("Fornecedor " + nome + " cadastrado com " +
                     "sucesso!");
-        } else if (cadastro == 2){
+        } else {
             System.out.println("Erro no cadastro, por favor, " +
                     "tente novamente");
-        } else {
-            System.out.println("Sinto muito, mas a lista de fornecedores " +
-     "está cheia; Para cadastrar um novo fornecedor, " +
-                    "libere espaço na lista.");
         }
     }
 
-    public void buscarProdutoPorNome(GestorProdutos gestorProdutos){
+    public void buscarProdutoPorNome(GestorFornecedor gestorFornecedor){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Por favor digite o nome do produto que deseja buscar: ");
         String nome = scanner.next();
-        Fornecedor[] fornecedoresProduto = gestorProdutos.buscarProdutoPorNome(nome);
+        Fornecedor[] fornecedoresProduto = gestorFornecedor.buscarProdutoPorNome(nome);
         if(fornecedoresProduto.length == 0){
             System.out.println("Desculpe, mas não existe nenhum fornecedor que tenha esse produto.");
         } else {
@@ -67,11 +65,11 @@ public class MenuGestorLoja {
         }
     }
 
-    public void buscarProdutoPorID(GestorProdutos gestorProdutos){
+    public void buscarProdutoPorID(GestorFornecedor gestorFornecedor){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Por favor digite o ID do produto que deseja buscar: ");
         String ID = scanner.next();
-        Fornecedor[] fornecedoresProduto = gestorProdutos.buscarProdutoPorID(ID);
+        Fornecedor[] fornecedoresProduto = gestorFornecedor.buscarProdutoPorID(ID);
         if(fornecedoresProduto.length == 0){
             System.out.println("Desculpe, mas não existe nenhum fornecedor que tenha esse produto.");
         } else {
@@ -82,11 +80,11 @@ public class MenuGestorLoja {
         }
     }
 
-    public void exibirInfoFornecedor(GestorProdutos gestorProdutos){
+    public void exibirInfoFornecedor(GestorFornecedor gestorFornecedor){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Digite o CNPJ do fornecedor que deseja buscar: ");
         int cnpj = scanner.nextInt();
-        Fornecedor busca = gestorProdutos.exibirInfoFornecedor(cnpj);
+        Fornecedor busca = gestorFornecedor.exibirInfoFornecedor(cnpj);
         if(busca == null){
             System.out.println("Desculpe, mas esse fornecedor não existe.");
         } else {
@@ -94,11 +92,11 @@ public class MenuGestorLoja {
         }
     }
 
-    public void exibirInfoProduto(GestorProdutos gestorProdutos){
+    public void exibirInfoProduto(GestorFornecedor gestorFornecedor){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Digite o nome do produto pelo qual deseja buscar: ");
         String nome = scanner.next();
-        Produto[] produto = gestorProdutos.exibirInfoProduto(nome);
+        Produto[] produto = gestorFornecedor.exibirInfoProduto(nome);
         for(int i = 0; i < produto.length; i++){
             if(produto.length == 0){
                 System.out.println("Desculpe, mas nenhum fornecedor tem esse produto cadastrado.");
@@ -108,13 +106,13 @@ public class MenuGestorLoja {
         }
     }
 
-    public void relatorioFornecedores(GestorProdutos gestorProdutos){
-        for(int i = 0; i < gestorProdutos.qntFornecedores; i++){
+    public void relatorioFornecedores(GestorFornecedor gestorFornecedor){
+        for(int i = 0; i < gestorFornecedor.qntFornecedores; i++){
             System.out.println("Fornecedor %i" + i);
-            System.out.println("\nNome: %s" + gestorProdutos.listaDeFornecedores[i].nome);
-            System.out.println("\nCNPJ: %i" + gestorProdutos.listaDeFornecedores[i].cnpj);
+            System.out.println("\nNome: %s" + gestorFornecedor.listaDeFornecedores[i].nome);
+            System.out.println("\nCNPJ: %i" + gestorFornecedor.listaDeFornecedores[i].cnpj);
             System.out.println("\nQuantidade de produtos: %i\n" +
-                    gestorProdutos.listaDeFornecedores[i].qntProdutosFornecedor);
+                    gestorFornecedor.listaDeFornecedores[i].qntProdutosFornecedor);
         }
     }
 }

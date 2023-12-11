@@ -42,11 +42,9 @@ public class MenuLoja {
         System.out.println("Digite a quantidade do estoque do produto: ");
         int qnt = scanner.nextInt();
         Produto produto = new Produto(ID, nome, descricao, preco, qnt);
-        int cadastro = estoque.cadastrarProduto(produto);
-        if(cadastro == 1){
+        boolean cadastro = estoque.cadastrarProduto(produto);
+        if(cadastro){
             System.out.println("Produto cadastrado com sucesso!");
-        } else if (cadastro == 2) {
-            System.out.println("O estoque está cheio, não podemos cadastrar um novo produto.");
         } else {
             System.out.println("Erro no cadastro do produto, por favor, tente novamente.");
         }
