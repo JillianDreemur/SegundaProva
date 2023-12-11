@@ -1,6 +1,6 @@
-package prova.aula.poo.src.Main;
-import prova.aula.poo.src.Model.Estoque;
-import prova.aula.poo.src.Model.Produto;
+package br.estoque.src.Main;
+import br.estoque.src.Model.Estoque;
+import br.estoque.src.Model.Produto;
 import java.util.Scanner;
 
 public class MenuLoja {

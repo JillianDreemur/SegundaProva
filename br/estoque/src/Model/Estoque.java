@@ -1,6 +1,5 @@
 package br.estoque.src.Model;
 import br.estoque.src.Model.Produto;
-import java.util.Scanner;
 
 public class Estoque {
     public Produto[] listaDeProdutos;
@@ -19,15 +18,17 @@ public class Estoque {
         return null;
     }
 
-    public boolean cadastrarProduto(Produto produto) {
+    public Produto cadastrarProduto(Produto produto) {
         if (buscarNome(produto.nome) == null) {
             if (qntProdutos < listaDeProdutos.length) {
                 this.listaDeProdutos[this.qntProdutos] = produto;
                 this.qntProdutos++;
-                return true;
+            }
+            if(buscarNome(produto.nome) != null){
+                return produto;
             }
         }
-        return false;
+        return null;
     }
 
     public Produto buscarNome(String nome) {
@@ -60,7 +61,8 @@ public class Estoque {
         return this.listaDeProdutos[variavel] == null;
     }
 
-    public boolean atualizarProduto(String nomeProduto, Produto produto) {
+    public boolean atualizarProduto(String nomeProduto,
+                                    Produto produto) {
         for (int i = 0; i < qntProdutos; i++) {
             if(this.listaDeProdutos[i].nome.equalsIgnoreCase(nomeProduto)) {
                 this.listaDeProdutos[i].ID = produto.ID;
@@ -70,6 +72,7 @@ public class Estoque {
                 this.listaDeProdutos[i].qntEstoque = produto.qntEstoque;
             }
         }
-        return (buscarNome(nomeProduto) == null) && (buscarNome(produto.nome) != null);
+        return (buscarNome(nomeProduto) == null) &&
+                (buscarNome(produto.nome) != null);
     }
 }
